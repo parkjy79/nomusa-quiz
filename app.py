@@ -178,3 +178,9 @@ with col2:
         st.session_state.index = 0
         random.shuffle(st.session_state.order)
         st.rerun()
+
+{
+    "title": "내가 추가할 판례 제목",
+    "quiz": "OCR 리포트에서 긁어온 문장 중 핵심 키워드 자리를 [ ________ ] 로 비워둔 퀴즈 내용",
+    "answer": "빈칸에 들어갈 고득점 필수 현출 키워드 정답"
+},
