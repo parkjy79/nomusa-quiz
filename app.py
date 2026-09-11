@@ -10,7 +10,7 @@ st.caption("구글 스프레드시트 실시간 연동 버전")
 st.write("---")
 
 # 🔗 회원님의 구글 시트 주소와 'upload' 탭을 가리키는 전용 연동 링크입니다.
-GOOGLE_SHEET_URL = "https://google.com"
+GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTHxAIWGskD-iVc7DLOj0tl_IwLD4Kyo_2JO3FiaEQdUosBffApaeah3aUjrwo8QwhSLZ4hFRtm2Wap/pub?output=csv"
 
 @st.cache_data(ttl=5) # 5초마다 구글 시트의 최신 데이터를 자동으로 확인하여 새로고침합니다.
 def load_data_from_google():
