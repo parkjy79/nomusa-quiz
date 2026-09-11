@@ -4,7 +4,7 @@ import random
 # 스마트폰 화면에 맞춘 모바일 최적화 레이아웃 설정
 st.set_page_config(page_title="노무사 판례 암기장", page_icon="🧠", layout="centered")
 
-# 💡 25선 핵심 리딩 판례 데이터베이스
+# 💡 조사와 흐름을 100% 실제 대법원 오피셜 문구로 교정한 25선 데이터베이스
 @st.cache_data
 def get_panre_db():
     return [
@@ -130,24 +130,18 @@ def get_panre_db():
         },
         {
             "title": "지배·개입의 부당노동행위 성립 요건 (대판 2006.9.28, 2006도385)",
-            "quiz": "사용자가 노동조합의 조직·운영에 개입하는 지배·개입의 부당노동행위는 반드시 현실적으로 구체적인 [ ______________________________ ] 이 발생하지 않았더라도, 그러한 위험성이나 행동 경향성만으로 성립할 수 있다.",
-            "answer": "조합 활동의 위축이나 결과적 저해"
-        },
-        {
-    "title": "내가 추가할 판례 제목",
-    "quiz": "OCR 리포트에서 긁어온 문장 중 핵심 키워드 자리를 [ ________ ] 로 비워둔 퀴즈 내용",
-    "answer": "빈칸에 들어갈 고득점 필수 현출 키워드 정답"
+            "quiz": "사용자가 노동조합의 조직·운영에 개입하는 지배·개입의 부당노동행위는 반드시 현실적으로 구체적인 [ ____________________________________________ ] 을 요하는 것은 아니고, 그러한 [ ____________ ] 이나 행동 경향성이 있으면 성립할 수 있다.",
+            "answer": "조합 활동의 위축이나 결과적 저해문이 발생하였음 / 위험성"
         }
     ]
 
 # 모바일 웹 앱 인터페이스 구성
-st.title("🎓 노무사 합격 판례 인출기")
+st.title("🎓 노무사 합판례 인출기")
 st.caption("이윤규 변호사식 액티브 리콜(Active Recall) 모바일 훈련장")
 st.write("---")
 
 db = get_panre_db()
 
-# 새로고침 시 질문 순서 셔플을 위한 세션 상태 세팅
 if 'order' not in st.session_state:
     st.session_state.order = list(range(len(db)))
     random.shuffle(st.session_state.order)
@@ -157,13 +151,11 @@ if 'index' not in st.session_state:
 idx = st.session_state.order[st.session_state.index]
 current_item = db[idx]
 
-# 상단 문항 정보 바
 st.subheader(f"🔥 문항 [{st.session_state.index + 1} / {len(db)}]")
 st.info(f"**쟁점: {current_item['title']}**")
 
 st.warning(current_item['quiz'])
 
-# 터치식 정답 확인 시스템
 if st.button("👁️ 모범답안 필수 현출 키워드 확인", use_container_width=True):
     st.success(f"**🟢 필수 현출 문구:**\n\n{current_item['answer']}")
 
@@ -183,4 +175,3 @@ with col2:
         st.session_state.index = 0
         random.shuffle(st.session_state.order)
         st.rerun()
-
